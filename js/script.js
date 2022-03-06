@@ -1,57 +1,88 @@
+// fetch blog post
+(async () => {
+  const postsDiv = document.getElementById("posts");
+  await fetch(
+    "https://health.gov/myhealthfinder/api/v3/myhealthfinder.json?age=30&sex=male"
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const results = data.Result.Resources.all.Resource;
+      results.forEach((result, i) => {
+        if (i < 3) {
+          postsDiv.innerHTML += `
+          <div class="d-flex mb-4 post">
+            <img
+              src=${result.ImageUrl}
+              class="img-fluid blog-img"
+              alt=${result.ImageAlt}
+            />
+            <div class="content ml-4">
+              <h6>${result.Title}</h6>
+              <p> <a href=${result.AccessibleVersion} target="blank"> Read Post... </a></p>
+            </div>
+          </div>
+          `;
+        }
+      });
+    })
+    .catch((error) => {
+      return error;
+    });
+})();
+
 //UI VARS
-const header = document.querySelector('header');
-      navLinks = document.querySelectorAll('.nav-link'),
-      sections = document.querySelectorAll('section');
- //Animate on Scroll 
+const header = document.querySelector("header");
+(navLinks = document.querySelectorAll(".nav-link")),
+  (sections = document.querySelectorAll("section"));
+//Animate on Scroll
 AOS.init({
-       easing: 'ease-in-out-sine',
-       offset: 120,
-       duration: 500
-    });;
+  easing: "ease-in-out-sine",
+  offset: 120,
+  duration: 500,
+});
 
 // Listen for scrolling event on the browser
-window.addEventListener('scroll', (e) => {
+window.addEventListener("scroll", (e) => {
   const offset = window.pageYOffset;
   // Checks if 100px of the page has been scrolled
-  if(offset > 100) {
-    header.classList.add('header-scroll');
+  if (offset > 100) {
+    header.classList.add("header-scroll");
     // mainNav.classList.add('main-nav-scroll');
-  }
-  else {
-    header.classList.remove('header-scroll');
+  } else {
+    header.classList.remove("header-scroll");
     // mainNav.classList.remove('main-nav-scroll');
   }
-})
+});
 
 // Set threshold for the observer
 const options = {
-    threshold: 0.5
+  threshold: 0.5,
 };
 
 // Create a new intersection observer
 let observer = new IntersectionObserver(navCheck, options);
 
 function navCheck(entries) {
-  entries.forEach(entry => {
-  // Get classname of the section in view
-  const idName = entry.target.id;
-  // Gets the links tied to its section
-  const activeAnchor = document.querySelector(`[data-page=${idName}]`)
-  // Checks if section is in view
-  if(entry.isIntersecting) {
-    // Clears the active class from all links 
-    for(i = 0; i < navLinks.length; i++)  {
-      navLinks[i].classList.remove('active');
-    }    
-  //   navLinks.forEach(navLink => {
-  //   navLink.classList.remove('active');
-  // });
-  //Adds the class active to the link whose section is in view
-    activeAnchor.classList.add('active');
-  }
+  entries.forEach((entry) => {
+    // Get classname of the section in view
+    const idName = entry.target.id;
+    // Gets the links tied to its section
+    const activeAnchor = document.querySelector(`[data-page=${idName}]`);
+    // Checks if section is in view
+    if (entry.isIntersecting) {
+      // Clears the active class from all links
+      for (i = 0; i < navLinks.length; i++) {
+        navLinks[i].classList.remove("active");
+      }
+      //   navLinks.forEach(navLink => {
+      //   navLink.classList.remove('active');
+      // });
+      //Adds the class active to the link whose section is in view
+      activeAnchor.classList.add("active");
+    }
   });
 }
-sections.forEach(section => {
+sections.forEach((section) => {
   // Observes all section element on the page
   observer.observe(section);
-})
+});
