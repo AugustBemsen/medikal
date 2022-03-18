@@ -30,6 +30,28 @@
     });
 })();
 
+// handle email
+const submit = document.getElementById("submit_btn");
+const client_name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const number = document.getElementById("number").value;
+const reason = document.getElementById("select").value;
+const date = document.getElementById("date").valueAsDate;
+const time = document.getElementById("time");
+
+submit.addEventListener("click", () => {
+  const data = {
+    client_name,
+    email,
+    number,
+    reason,
+    date,
+    time,
+  };
+
+  console.log(data);
+});
+
 //UI VARS
 const header = document.querySelector("header");
 (navLinks = document.querySelectorAll(".nav-link")),
