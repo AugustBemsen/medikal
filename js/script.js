@@ -7,8 +7,13 @@
     .then((res) => res.json())
     .then((data) => {
       const results = data.Result.Resources.all.Resource;
+      const show1 = Math.floor(Math.random() * 10);
+      const show2 =
+        show1 === Math.floor(Math.random() * 10)
+          ? Math.floor(Math.random() * 8) + 1
+          : Math.floor(Math.random() * 10);
       results.forEach((result, i) => {
-        if (i < 3) {
+        if (i === show1 || i === show2) {
           postsDiv.innerHTML += `
           <div class="d-flex mb-4 post">
             <img
@@ -32,24 +37,29 @@
 
 // handle email
 const submit = document.getElementById("submit_btn");
-const client_name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const number = document.getElementById("number").value;
-const reason = document.getElementById("select").value;
-const date = document.getElementById("date").valueAsDate;
-const time = document.getElementById("time");
-
 submit.addEventListener("click", () => {
+  const client_name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const number = document.getElementById("number").value;
+  const reason = document.getElementById("select").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+  const message = document.getElementById("message").value;
   const data = {
-    client_name,
+    "client name": client_name,
     email,
     number,
     reason,
     date,
     time,
+    message,
   };
-
-  console.log(data);
+  const mail = document.createElement("a");
+  mail.href = `mailto:admin@regency-hospital.com?cc=kelechiraja@regency-hospital.com&subject=New%20Appointment&body=${JSON.stringify(
+    data
+  )}`;
+  mail.click();
+  console.log(mail);
 });
 
 //UI VARS

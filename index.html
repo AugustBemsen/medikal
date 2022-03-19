@@ -372,7 +372,11 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="Appointment">Reason for appointment</label>
-                    <select class="form-control py-4" name="" id="select">
+                    <select
+                      placeholder="Select Reason"
+                      class="form-control py-4"
+                      id="select"
+                    >
                       <option value="Emergency Medicine">
                         Emergency Medicine
                       </option>
@@ -406,9 +410,13 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="Time">Time</label>
-                    <input type="time" class="form-control py-4" />
+                    <input id="time" type="time" class="form-control py-4" />
                   </div>
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="Time">Note</label>
+                <textarea id="message" class="form-control py-4"> </textarea>
               </div>
               <button id="submit_btn" class="btn btn-primary btn-lg mt-3">
                 Book an appointment
@@ -462,6 +470,27 @@
           </div>
           <div class="col-md-4">
             <h4 class="mb-4">Health blog post</h4>
+            <div class="d-flex mb-4 post">
+              <img
+                src="https://newsghana.com.gh/wp-content/uploads/2015/04/wpid-Indian-Doctor.png"
+                class="img-fluid blog-img"
+                alt="doctor"
+              />
+              <div class="content ml-4">
+                <h6>
+                  Dr Ambuja Eberendu, Performs 7 Caesarean Operations A Week In
+                  Nigeria
+                </h6>
+                <p>
+                  <a
+                    href="https://newsghana.com.gh/dr-ambuja-eberendu-performs-7-caesarean-operations-a-week-in-nigeria/"
+                    target="blank"
+                  >
+                    Read Post...
+                  </a>
+                </p>
+              </div>
+            </div>
             <div id="posts"></div>
           </div>
           <div class="col-md-4">
@@ -473,7 +502,7 @@
               <i class="fa fa-phone mr-2"></i>(+234) 0803 4921 619
             </p>
             <p class="mb-4">
-              <i class="fa fa-envelope mr-2"></i>admin@regencyhospital.com
+              <i class="fa fa-envelope mr-2"></i>admin@regency-hospital.com
             </p>
           </div>
         </div>
