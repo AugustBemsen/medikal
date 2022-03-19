@@ -59,7 +59,6 @@ submit.addEventListener("click", () => {
     data
   )}`;
   mail.click();
-  console.log(mail);
 });
 
 //UI VARS
