@@ -45,6 +45,7 @@ submit.addEventListener("click", () => {
   const date = document.getElementById("date").value;
   const time = document.getElementById("time").value;
   const message = document.getElementById("message").value;
+  const mail = document.getElementById("send_mail");
   const data = {
     "client name": client_name,
     email,
@@ -54,11 +55,10 @@ submit.addEventListener("click", () => {
     time,
     message,
   };
-  const mail = document.createElement("a");
   mail.href = `mailto:admin@regency-hospital.com?cc=kelechiraja@regency-hospital.com&subject=New%20Appointment&body=${JSON.stringify(
     data
   )}`;
-  mail.click();
+  console.log(mail);
 });
 
 //UI VARS
